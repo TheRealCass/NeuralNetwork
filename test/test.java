@@ -1,3 +1,7 @@
+package test;
+
+import neuralNetwork.*;
+
 public class test {
     public static void main(String[] args) {
         preceptronTest();
@@ -5,8 +9,12 @@ public class test {
 
     public static void preceptronTest() {
         System.out.println("Testing Preceptron class");
+        System.out.println();
         test1();
+        System.out.println();
         test2();
+        System.out.println();
+
     }
 
 
@@ -25,6 +33,17 @@ public class test {
     }
 
     private static void test2() {
-        System.out.print("Test 2: ----> ");
+        System.out.println("Test 2: Activation Functions");
+        System.out.print("Test 2.1: Sigh Activation ----> ");
+        boolean passed = false;
+        
+        Preceptron testPreceptron = new Preceptron(4);
+        testPreceptron.activate();
+        double output = testPreceptron.getOutput();
+        if (output >= -1 && output <= 1) {
+            passed = true;
+        }
+        System.out.println(passed ? "Passed" : "Failed");
+
     }
 }

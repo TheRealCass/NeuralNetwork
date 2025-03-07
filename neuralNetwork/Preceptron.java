@@ -1,3 +1,4 @@
+package neuralNetwork;
 import math.ActivationFunctions;
 
 public class Preceptron {
@@ -11,7 +12,9 @@ public class Preceptron {
     // Instance variables
     private double[] inputs;
     private double[] weights;
+    private int NumOfInputs;
     private double output;
+    private double weightedSum;
     
     private float learningRate = 0.1f;
 
@@ -22,10 +25,15 @@ public class Preceptron {
      * @return Preceptron object
      */
     public Preceptron(int NumOfInputs) {
+        
+        weightedSum = 0;
+        output = 0;
+        
         // Initialize the inputs & weights randomly
-        inputs = new double[NumOfInputs];
-        weights = new double[NumOfInputs];
-        for (int i = 0; i < NumOfInputs ; i++) {
+        this.NumOfInputs = NumOfInputs;
+        inputs = new double[this.NumOfInputs];
+        weights = new double[this.NumOfInputs];
+        for (int i = 0; i < this.NumOfInputs ; i++) {
             inputs[i] = Math.random() * 2 - 1;
             inputs[i] = Double.valueOf(String.format("%.2f", inputs[i]));
             
@@ -41,9 +49,10 @@ public class Preceptron {
         for (int i = 0; i < inputs.length; i++) {
             sum += inputs[i] * weights[i];
         }
+        this.weightedSum = sum;
 
         // pass through a activation function
-        this.output = ActivationFunctions.activate(sum, "sigh");
+        this.output = ActivationFunctions.activate(weightedSum, "sigh");
     }
 
 
@@ -75,6 +84,14 @@ public class Preceptron {
 
     public void setOutput(double output) {
         this.output = output;
+    }
+
+    public double getWeightedSum() {
+        return weightedSum;
+    }
+
+    public void setWeightedSum(double weightedSum) {
+        this.weightedSum = weightedSum;
     }
 
     public float getLearningRate() {
