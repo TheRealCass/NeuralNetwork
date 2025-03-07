@@ -9,13 +9,15 @@ public class Preceptron {
     //input 3--->---(weight3)-----|
     //
 
+    //constants
+    private static final String PREFERED_ACTIVATION_FUNC = "sigh";
+    
     // Instance variables
+    private int NumOfInputs;
     private double[] inputs;
     private double[] weights;
-    private int NumOfInputs;
     private double output;
     private double weightedSum;
-    
     private float learningRate = 0.1f;
 
     /**
@@ -52,7 +54,7 @@ public class Preceptron {
         this.weightedSum = sum;
 
         // pass through a activation function
-        this.output = ActivationFunctions.activate(weightedSum, "sigh");
+        this.output = ActivationFunctions.activate(weightedSum, PREFERED_ACTIVATION_FUNC);
     }
 
 
@@ -68,6 +70,7 @@ public class Preceptron {
 
     public void setInputs(double[] inputs) {
         this.inputs = inputs;
+        this.NumOfInputs = inputs.length;
     }
 
     public double[] getWeights() {
@@ -75,6 +78,9 @@ public class Preceptron {
     }
 
     public void setWeights(double[] weights) {
+        if (weights.length != NumOfInputs) {
+            throw new IllegalArgumentException("Number of weights must be equal to the number of inputs");
+        }
         this.weights = weights;
     }
 
@@ -82,16 +88,8 @@ public class Preceptron {
         return output;
     }
 
-    public void setOutput(double output) {
-        this.output = output;
-    }
-
     public double getWeightedSum() {
         return weightedSum;
-    }
-
-    public void setWeightedSum(double weightedSum) {
-        this.weightedSum = weightedSum;
     }
 
     public float getLearningRate() {

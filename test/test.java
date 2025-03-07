@@ -9,17 +9,15 @@ public class test {
 
     public static void preceptronTest() {
         System.out.println("Testing Preceptron class");
-        System.out.println();
         test1();
-        System.out.println();
         test2();
+        //test3();
         System.out.println();
 
     }
 
 
     private static void test1() {
-        System.out.print("Test 1: Randomisazion ----> ");
         Preceptron testPreceptron = new Preceptron(7);
         double[] preceptronInputs = testPreceptron.getInputs();
         double[] preceptronWeights = testPreceptron.getWeights();
@@ -27,14 +25,14 @@ public class test {
             int humanReadableIndex = i + 1;
             String toPrint = "Input " + humanReadableIndex + ": " + preceptronInputs[i];
             toPrint += " has a weight of " + preceptronWeights[i];
-            //System.out.println(toPrint);
+            System.out.println(toPrint);
         }
+        System.out.print("Test 1: Randomisazion----> ");
         System.out.println("Passed");
     }
 
     private static void test2() {
-        System.out.println("Test 2: Activation Functions");
-        System.out.print("Test 2.1: Sigh Activation ----> ");
+        System.out.print("Test 2: Activation Functions----> ");
         boolean passed = false;
         
         Preceptron testPreceptron = new Preceptron(4);

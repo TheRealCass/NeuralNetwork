@@ -14,17 +14,31 @@ public abstract class ActivationFunctions {
                 return leakyRelu(input);
             case "elu":
                 return elu(input);
+            case "sin":
+                return sin(input);
             default:
-                return sigh(input);
+                return rubait(input);
         }
     }
     
+
     /**
-     * sigh activation function
+     * sin activation function
      * @param input
      * @return value between -1 and 1
      */
-    private static double sigh(double input) {
+    private static double sin(double input) {
+        return Math.sin(input);
+    }
+
+    /**
+     * Rubait's Super Simple(RSS) activation function
+     * PS: I am Rubait xD
+     * 
+     * @param input
+     * @return value of -1 or 1
+     */
+    private static double rubait(double input) {
         double toReturn = 0;
         if (input >= 0) {
             toReturn = 1.00;
