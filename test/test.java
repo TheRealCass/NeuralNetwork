@@ -2,9 +2,13 @@ package test;
 
 import neuralNetwork.*;
 
+import graph.*;
+
+
 public class test {
     public static void main(String[] args) {
-        preceptronTest();
+        //preceptronTest();
+
     }
 
     public static void preceptronTest() {

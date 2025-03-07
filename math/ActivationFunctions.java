@@ -42,6 +42,7 @@ public abstract class ActivationFunctions {
         double toReturn = 0;
         if (input >= 0) {
             toReturn = 1.00;
+            return toReturn;
         }
         toReturn = -1.00;
         return toReturn;
