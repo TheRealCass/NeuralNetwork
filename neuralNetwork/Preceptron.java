@@ -4,21 +4,21 @@ import math.ActivationFunctions;
 public class Preceptron {
 
     //
-    //input 1--->---(weight1)-----|
+    //input 1--->---(bias)--------|
     //input 2--->---(weight2)-----(preceptron)---->----output
     //input 3--->---(weight3)-----|
     //
 
     //constants
-    private static final String PREFERED_ACTIVATION_FUNC = "sigh";
+    protected static final String PREFERED_ACTIVATION_FUNC = "sigh";
     
     // Instance variables
-    private int NumOfInputs;
-    private double[] inputs;
-    private double[] weights;
-    private double output;
-    private double weightedSum;
-    private float learningRate = 0.1f;
+    protected int NumOfInputs;
+    protected double[] inputs;
+    protected double[] weights;
+    protected double output;
+    protected double weightedSum;
+    protected double learningRate = 0.1;
 
     /**
      * Constructor for the Preceptron class
@@ -37,14 +37,24 @@ public class Preceptron {
         weights = new double[this.NumOfInputs];
         for (int i = 0; i < this.NumOfInputs ; i++) {
             inputs[i] = Math.random() * 2 - 1;
+            if (inputs[i] > 0.99) {
+                inputs[i] = 1.00;
+            }
             inputs[i] = Double.valueOf(String.format("%.2f", inputs[i]));
             
             weights[i] = Math.random() * 2 - 1;
+            if (weights[i] > 0.99) {
+                weights[i] = 1.00;
+            }
             weights[i] = Double.valueOf(String.format("%.2f", weights[i]));
         }
     }
 
-    public void activate() {
+    /**
+     * Activation Function
+     * takes in the input, calulates the weighted sum,
+     */
+    public void pulse() {
 
         //compute the sum of the inputs
         double sum = 0;
@@ -92,7 +102,7 @@ public class Preceptron {
         return weightedSum;
     }
 
-    public float getLearningRate() {
+    public double getLearningRate() {
         return learningRate;
     }
 

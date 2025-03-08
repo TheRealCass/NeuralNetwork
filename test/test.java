@@ -1,25 +1,40 @@
 package test;
 
-import neuralNetwork.*;
-
-import graph.*;
-
+import neuralNetwork.Preceptron;
+import neuralNetwork.supervisedLearning.Trainer;
+import neuralNetwork.supervisedLearning.data.ActivationMap;
 
 public class test {
     public static void main(String[] args) {
-        //preceptronTest();
+        preceptronTest();
+        //activationMapTest();
+        //trainer();
+    }
+
+    private static void trainer () {
+        Preceptron p = new Preceptron(2);
+        Trainer t = new Trainer(p);
+        t.train();
+    }
+    
+
+    private static void activationMapTest() {
+        System.out.println("Testing Activation Map class");
+        ActivationMap map = new ActivationMap("./assets/traningData.txt");
+        System.out.println(map.toString());
+        double label = map.calculateLabel(4,8);
+        System.out.println(label);
 
     }
 
-    public static void preceptronTest() {
+    private static void preceptronTest() {
         System.out.println("Testing Preceptron class");
-        test1();
-        test2();
+        //test1();
+        //test2();
         //test3();
         System.out.println();
 
     }
-
 
     private static void test1() {
         Preceptron testPreceptron = new Preceptron(7);
@@ -40,7 +55,7 @@ public class test {
         boolean passed = false;
         
         Preceptron testPreceptron = new Preceptron(4);
-        testPreceptron.activate();
+        testPreceptron.pulse();
         double output = testPreceptron.getOutput();
         if (output >= -1 && output <= 1) {
             passed = true;
