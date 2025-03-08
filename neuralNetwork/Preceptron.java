@@ -18,7 +18,7 @@ public class Preceptron {
     protected double[] weights;
     protected double output;
     protected double weightedSum;
-    protected double learningRate = 0.1;
+    protected double learningRate = 0.0001;
 
     /**
      * Constructor for the Preceptron class
