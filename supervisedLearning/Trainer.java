@@ -1,6 +1,5 @@
 package supervisedLearning;
 
-import data.ActivationMap;
 import data.TraningDataPoint;
 import neuralNetwork.Preceptron;
 
@@ -12,7 +11,6 @@ public class Trainer {
     TraningDataPoint[] points;
     double[][] inputs;
     
-    double[] errors;
     ActivationMap map;
     
     public Trainer(Preceptron preceptron){
@@ -31,12 +29,6 @@ public class Trainer {
             double label = map.calculateLabel(points[i]);
             points[i].setTarget(label);
         }
-
-        //initialize errors
-        errors = new double[maxNumberOfPoint];
-
-        //initialise inputs
-        inputs = new double[maxNumberOfPoint][preceptron.getNumOfInputs()];
 
     }
 
@@ -90,10 +82,7 @@ public class Trainer {
     
     
     
-    private double randInt(int min, int max) {
-        int toReturn =  (int)(Math.random() * (max - min + 1) + min);
-        return toReturn;
-    }
+    
 
     
     

@@ -1,22 +1,15 @@
 package data;
 
-public class TraningDataPoint {
-    double x;
-    double y;
+import supervisedLearning.ActivationMap;
+
+public class TraningDataPoint extends DataPoint{
+
     double target;
 
-    public TraningDataPoint(double x, double y) {
-        this.x = x;
-        this.y = y;
-        this.target = -999.999;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
+    public TraningDataPoint(ActivationMap map) {
+        //choose a random x,y coordinate value from the map-grid
+        super((int)(Math.random() * map.getLengthOfXAxis()), (int)(Math.random() * map.getLengthOfYAxis()));
+        this.target = map.calculateLabel(this);
     }
 
     public double getTarget() {
@@ -25,6 +18,12 @@ public class TraningDataPoint {
 
     public void setTarget(double target) {
         this.target = target;
+    } 
+
+    public String toString(){
+        String toReturn = super.toString();
+        toReturn += " : " + target;
+        return toReturn;
     }
 
     

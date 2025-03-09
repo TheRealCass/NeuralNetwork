@@ -58,7 +58,7 @@ public class Preceptron {
 
         //compute the sum of the inputs
         double sum = 0;
-        for (int i = 0; i < inputs.length; i++) {
+        for (int i = 0; i < weights.length; i++) {
             sum += inputs[i] * weights[i];
         }
         this.weightedSum = sum;

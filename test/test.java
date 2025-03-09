@@ -1,16 +1,27 @@
 package test;
 
-import data.ActivationMap;
+import data.TraningDataPoint;
 import neuralNetwork.Preceptron;
+import supervisedLearning.ActivationMap;
 import supervisedLearning.Trainer;
 
 public class test {
     public static void main(String[] args) {
         //preceptronTest();
         //activationMapTest();
-        trainer();
+        traningDataPoint();
+        //trainer();
     }
 
+    private static void traningDataPoint() {
+        for (int i = 0; i < 20; i++) {
+            ActivationMap map = new ActivationMap("./assets/traningData.txt");
+            TraningDataPoint t = new TraningDataPoint(map);
+            System.out.println(t.toString());
+        }
+    }
+ 
+ 
     private static void trainer () {
         Preceptron p = new Preceptron(2);
         Trainer t = new Trainer(p);
@@ -30,7 +41,7 @@ public class test {
     private static void preceptronTest() {
         System.out.println("Testing Preceptron class");
         //test1();
-        //test2();
+        test2();
         //test3();
         System.out.println();
 

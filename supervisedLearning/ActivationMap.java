@@ -1,7 +1,9 @@
-package data;
+package supervisedLearning;
 
 import java.io.File;
 import java.util.Scanner;
+
+import data.TraningDataPoint;
 
 public final class ActivationMap {
     int lengthOfYAxis;
@@ -37,7 +39,12 @@ public final class ActivationMap {
                 }
                 
                 for (int j = 0; j < lengthOfYAxis; j++) {
-                        map[i][j] = Double.parseDouble(line[j]);
+                    double value = Double.parseDouble(line[j]);
+                    if (value < 1.00) {
+                        map[i][j] = -1.00;
+                    } else {
+                        map[i][j] = 1.00;
+                    }
                 }
             }
         }

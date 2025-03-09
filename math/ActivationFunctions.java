@@ -39,12 +39,11 @@ public abstract class ActivationFunctions {
      * @return value of -1 or 1
      */
     private static double rubait(double input) {
-        double toReturn = 0;
+        double toReturn = -1.00;
         if (input >= 0) {
             toReturn = 1.00;
             return toReturn;
         }
-        toReturn = -1.00;
         return toReturn;
     }
 
