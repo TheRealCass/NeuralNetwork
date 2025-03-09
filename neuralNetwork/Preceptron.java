@@ -18,7 +18,7 @@ public class Preceptron {
     protected double[] weights;
     protected double output;
     protected double weightedSum;
-    protected double learningRate = 0.0001;
+    protected double learningRate = 0.01;
 
     /**
      * Constructor for the Preceptron class
@@ -108,5 +108,9 @@ public class Preceptron {
 
     public void setLearningRate(float learningRate) {
         this.learningRate = learningRate;
+    }
+
+    public int getNumOfInputs() {
+        return NumOfInputs;
     }
 }

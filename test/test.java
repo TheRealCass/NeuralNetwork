@@ -6,9 +6,9 @@ import neuralNetwork.supervisedLearning.data.ActivationMap;
 
 public class test {
     public static void main(String[] args) {
-        preceptronTest();
+        //preceptronTest();
         //activationMapTest();
-        //trainer();
+        trainer();
     }
 
     private static void trainer () {

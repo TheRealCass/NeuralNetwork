@@ -1,10 +1,5 @@
 package neuralNetwork.supervisedLearning;
 
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import neuralNetwork.Preceptron;
 import neuralNetwork.supervisedLearning.data.ActivationMap;
 import neuralNetwork.supervisedLearning.data.TraningDataPoint;
@@ -12,8 +7,7 @@ import neuralNetwork.supervisedLearning.data.TraningDataPoint;
 public class Trainer {
 
     Preceptron preceptron;
-    double error;
-    int maxNumberOfPoint = 20;
+    int maxNumberOfPoint = 100000;
     
     TraningDataPoint[] points;
     double[][] inputs;
@@ -38,16 +32,16 @@ public class Trainer {
             points[i].setTarget(label);
         }
 
-        // Your code to save the array to a text file
-        saveArrayToFile(points, lengthOfXAxis, lengthOfYAxis);
-
         //initialize errors
         errors = new double[maxNumberOfPoint];
+
+        //initialise inputs
+        inputs = new double[maxNumberOfPoint][preceptron.getNumOfInputs()];
 
     }
 
     private double[] findError() {
-        inputs = new double[maxNumberOfPoint][2];
+        
         
         for (int i = 0; i < points.length; i++) {
             //get the inputs
@@ -67,17 +61,18 @@ public class Trainer {
 
     public void train() {
         this.errors = findError();
-        updateWeights(error);
+        updateWeights(errors);
         
     }
 
-    public void updateWeights(double error) {     
+    public void updateWeights(double[] errors) {     
+        double[] weights = preceptron.getWeights();
+
         for (int i = 0; i < errors.length; i++) {
-            double[] weights = preceptron.getWeights();
+            
             for (int j = 0; j < weights.length; j++) {
                 weights[j] += errors[i] * inputs[i][j] * preceptron.getLearningRate();
             }
-            preceptron.setWeights(weights);
             if (i == errors.length - 1) {
                 System.out.print("Updated Weights: ");
                 System.out.println(weights[0] + ", " + weights[1]);
@@ -100,30 +95,6 @@ public class Trainer {
         return toReturn;
     }
 
-    private static void saveArrayToFile(TraningDataPoint[] points, int rows, int cols) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./assets/randomInput.txt"))) {
-            writer.write(rows + " " + cols);
-            writer.newLine();
-            
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++) {
-                    boolean isPoint = false;
-                    for (TraningDataPoint point : points) {
-                        if (point.getX() == i && point.getY() == j) {
-                            writer.write((int) point.getTarget() + " ");
-                            isPoint = true;
-                            break;
-                        }
-                    }
-                    if (!isPoint) {
-                        writer.write("0 ");
-                    }
-                }
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    
     
 }
