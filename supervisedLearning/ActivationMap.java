@@ -3,6 +3,7 @@ package supervisedLearning;
 import java.io.File;
 import java.util.Scanner;
 
+import data.DataPoint;
 import data.TraningDataPoint;
 
 public final class ActivationMap {
@@ -75,7 +76,7 @@ public final class ActivationMap {
     }
 
     
-    public double calculateLabel(TraningDataPoint point){
+    public double calculateLabel(DataPoint point){
         int x = (int)point.getX();
         int y = (int)point.getY();
         

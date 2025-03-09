@@ -12,7 +12,17 @@ public class test {
         //preceptron();
         //activationFunctions();
         //dataPoint();
-        activationMap();
+        //activationMap();
+        trainer();
+    }
+
+
+
+    public static void trainer() {
+        String path = "./assets/traningData.txt";
+        Preceptron p = new Preceptron(2);
+        Trainer coach = new Trainer(p, path, 10);
+        coach.train();
     }
 
     public static void activationMap() {

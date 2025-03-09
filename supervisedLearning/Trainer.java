@@ -19,7 +19,6 @@ public class Trainer {
         map = new ActivationMap(pathToActivationMap);
         for (int i = 0; i < points.length; i++) {
             points[i] = new TraningDataPoint(map);
-            System.out.println(points[i].toString());
         }
 
         //initialise graph dimention based on activation map
@@ -32,10 +31,10 @@ public class Trainer {
             }
         }
         
-        visualisePonts();
+        visualiseMap();
     }
 
-    private void visualisePonts() {
+    private void visualiseMap() {
          
         //plot traning data on grid
         for (int i = 0; i < points.length; i++) {
@@ -60,6 +59,22 @@ public class Trainer {
     }
 
     public void train() {
+        findError();
+        
+
+        //update weights based on the errors
+        double[] weight = preceptron.getWeights();
+        double[] input = preceptron.getInputs();
+        for (int j = 0; j < weight.length; j++) {
+            weight[j] += input[j] * points[j].getError() * preceptron.getLearningRate() +1 ;
+        }
+        //preceptron.setWeights(weight);
+
+        
+    }
+
+    public void findError() {
+        //find error for each data point
         for (int i = 0; i < points.length; i++) {
             double xCoordinate = points[i].getX();
             double yCoordinate = points[i].getY();
@@ -69,9 +84,10 @@ public class Trainer {
             preceptron.pulse();
             
             double guess = preceptron.getOutput();
-            
+            double target = map.calculateLabel(points[i]);
+            double error = target - guess;
+            points[i].setError(error);
         }
-        
     }
 
     

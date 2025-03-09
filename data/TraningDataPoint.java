@@ -13,11 +13,6 @@ public class TraningDataPoint extends DataPoint{
         this.target = map.calculateLabel(this);
     }
 
-    public void calculateError(){
-        throw new UnsupportedOperationException("Unimplemented method 'calculateError'");
-        
-    }
-
     public double getTarget() {
         return target;
     }
