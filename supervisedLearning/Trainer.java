@@ -1,8 +1,8 @@
-package neuralNetwork.supervisedLearning;
+package supervisedLearning;
 
+import data.ActivationMap;
+import data.TraningDataPoint;
 import neuralNetwork.Preceptron;
-import neuralNetwork.supervisedLearning.data.ActivationMap;
-import neuralNetwork.supervisedLearning.data.TraningDataPoint;
 
 public class Trainer {
 

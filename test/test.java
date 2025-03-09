@@ -1,8 +1,8 @@
 package test;
 
+import data.ActivationMap;
 import neuralNetwork.Preceptron;
-import neuralNetwork.supervisedLearning.Trainer;
-import neuralNetwork.supervisedLearning.data.ActivationMap;
+import supervisedLearning.Trainer;
 
 public class test {
     public static void main(String[] args) {

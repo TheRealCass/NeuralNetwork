@@ -1,4 +1,4 @@
-package neuralNetwork.supervisedLearning.data;
+package data;
 
 public class TraningDataPoint {
     double x;
