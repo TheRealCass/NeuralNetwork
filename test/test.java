@@ -1,77 +1,135 @@
 package test;
 
+import data.DataPoint;
 import data.TraningDataPoint;
+import math.ActivationFunctions;
 import neuralNetwork.Preceptron;
 import supervisedLearning.ActivationMap;
 import supervisedLearning.Trainer;
 
 public class test {
     public static void main(String[] args) {
-        //preceptronTest();
-        //activationMapTest();
-        traningDataPoint();
-        //trainer();
+        //preceptron();
+        //activationFunctions();
+        //dataPoint();
+        activationMap();
     }
 
-    private static void traningDataPoint() {
-        for (int i = 0; i < 20; i++) {
-            ActivationMap map = new ActivationMap("./assets/traningData.txt");
-            TraningDataPoint t = new TraningDataPoint(map);
-            System.out.println(t.toString());
+    public static void activationMap() {
+        System.out.println("Testing ActivationMap class...");
+        String path = "./assets/traningData.txt";
+        ActivationMap map = new ActivationMap(path);
+        System.out.println("Ploting the ActivationMap:");
+        System.out.println(map);
+        System.out.println("Running others tests...");
+        TraningDataPoint dataPoint = new TraningDataPoint(map);
+        dataPoint.setX(3.00);
+        dataPoint.setY(2.0);
+        double label = map.calculateLabel(dataPoint);
+
+        dataPoint.setX(3.00);
+        dataPoint.setY(3.0);
+        double label1 = map.calculateLabel(dataPoint);
+
+        if (label == 1.00 && label1 ==-1.00) {
+           System.out.println("ActivationMap tests PASSED."); 
         }
     }
- 
- 
-    private static void trainer () {
-        Preceptron p = new Preceptron(2);
-        Trainer t = new Trainer(p);
-        t.train();
-    }
-    
 
-    private static void activationMapTest() {
-        System.out.println("Testing Activation Map class");
-        ActivationMap map = new ActivationMap("./assets/traningData.txt");
-        System.out.println(map.toString());
-        double label = map.calculateLabel(4,8);
-        System.out.println(label);
 
-    }
 
-    private static void preceptronTest() {
-        System.out.println("Testing Preceptron class");
-        //test1();
-        test2();
-        //test3();
-        System.out.println();
 
-    }
 
-    private static void test1() {
-        Preceptron testPreceptron = new Preceptron(7);
-        double[] preceptronInputs = testPreceptron.getInputs();
-        double[] preceptronWeights = testPreceptron.getWeights();
-        for (int i = 0; i < preceptronInputs.length; i++) {
-            int humanReadableIndex = i + 1;
-            String toPrint = "Input " + humanReadableIndex + ": " + preceptronInputs[i];
-            toPrint += " has a weight of " + preceptronWeights[i];
-            System.out.println(toPrint);
+    public static void dataPoint() {
+        System.out.print("Testing DataPoint ---->");
+
+        boolean passed = true;
+
+        // Test DataPoint creation
+        DataPoint point1 = new DataPoint(3.0, 4.0);
+        if (point1.getX() != 3.0 || point1.getY() != 4.0) {
+            passed = false;
+            System.out.println(" Failed at creation test.");
         }
-        System.out.print("Test 1: Randomisazion----> ");
-        System.out.println("Passed");
+
+        // Test getX method
+        if (point1.getX() != 3.0) {
+            passed = false;
+            System.out.println(" Failed at getX test.");
+        }
+
+        // Test getY method
+        if (point1.getY() != 4.0) {
+            passed = false;
+            System.out.println(" Failed at getY test.");
+        }
+
+        // Test toString method
+        if (!point1.toString().equals("3.0, 4.0")) {
+            passed = false;
+            System.out.println(" Failed at toString test.");
+        }
+
+        if (passed) {
+            System.out.println(" Passed.");
+        }
     }
 
-    private static void test2() {
-        System.out.print("Test 2: Activation Functions----> ");
+
+
+
+    public static void activationFunctions() {
+        System.out.print("Testing Activation Function: Rubait ---->");
         boolean passed = false;
-        
-        Preceptron testPreceptron = new Preceptron(4);
-        testPreceptron.pulse();
-        double output = testPreceptron.getOutput();
-        if (output >= -1 && output <= 1) {
+        // Test with a positive value
+        if(ActivationFunctions.rubait(5.0) == 1.0){
             passed = true;
         }
-        System.out.println(passed ? "Passed" : "Failed");
+        // Test with zero
+        if(ActivationFunctions.rubait(0.0) == 1.0){
+            passed = true;
+        }
+        if(ActivationFunctions.rubait(-3.0) == -1.0){
+            passed = true;
+        }
 
+        if(ActivationFunctions.rubait(0.01) == 1.0){
+            passed = true;
+        }
+
+        if(ActivationFunctions.rubait(-0.01) == -1.0){
+            passed = true;
+        }
+        if(passed){
+            System.out.println(" Passed.");
+        }
+
+    }
+
+    public static void preceptron() {
+        System.out.print("Testing Preceptron ---->");
+    
+        // Initialize a Preceptron with 3 inputs
+        Preceptron preceptron = new Preceptron(2);
+    
+        // Set some inputs
+        double[] testInputs = {0.5, -0.7, 0.2};
+        preceptron.setInputs(testInputs);
+    
+        // Pulse the Preceptron to compute the output
+        preceptron.pulse();
+        
+        // Get the output
+        double output = preceptron.getOutput();
+    
+        // Check if the output is computed (not the initial value)
+        boolean passed = output != -99.99;
+    
+        // Output the result of the test
+        if(passed){
+            System.out.println(" Passed.");
+        } else {
+            System.out.println(" Failed.");
+        }
     }
 }

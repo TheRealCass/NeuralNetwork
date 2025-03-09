@@ -6,72 +6,75 @@ import neuralNetwork.Preceptron;
 public class Trainer {
 
     Preceptron preceptron;
-    int maxNumberOfPoint = 100000;
-    
     TraningDataPoint[] points;
-    double[][] inputs;
-    
+    String[][] graph;    
     ActivationMap map;
     
-    public Trainer(Preceptron preceptron){
+    public Trainer(Preceptron preceptron, String pathToActivationMap, int NumberOfTraningData){
 
         this.preceptron = preceptron;
+        this.points = new TraningDataPoint[NumberOfTraningData];
 
         //load activation map
-        map = new ActivationMap("./assets/traningData.txt");
-        int lengthOfXAxis = map.getLengthOfXAxis() -1;
-        int lengthOfYAxis = map.getLengthOfYAxis() -1;
-        
-        //generate x,y point
-        points = new TraningDataPoint[maxNumberOfPoint];
+        map = new ActivationMap(pathToActivationMap);
         for (int i = 0; i < points.length; i++) {
-            points[i] = new TraningDataPoint(randInt(0,lengthOfXAxis), randInt(0,lengthOfYAxis));
-            double label = map.calculateLabel(points[i]);
-            points[i].setTarget(label);
+            points[i] = new TraningDataPoint(map);
+            System.out.println(points[i].toString());
         }
 
+        //initialise graph dimention based on activation map
+        int lengthX = map.getLengthOfXAxis();
+        int lengthY = map.getLengthOfYAxis();
+        graph = new String[lengthX][lengthY];
+        for (int i = 0; i < graph.length; i++) {
+            for (int j = 0; j < graph[i].length; j++) {
+                graph[i][j] = "*";
+            }
+        }
+        
+        visualisePonts();
     }
 
-    private double[] findError() {
-        
-        
+    private void visualisePonts() {
+         
+        //plot traning data on grid
         for (int i = 0; i < points.length; i++) {
-            //get the inputs
-            inputs[i][0] = points[i].getX();
-            inputs[i][1] = points[i].getY();
-
-            //activate the newron
-            preceptron.setInputs(inputs[i]);
-            preceptron.pulse();
-            
-            //calculate error
-            errors[i] = points[i].getTarget() - preceptron.getOutput();
-            
+            int x = (int)points[i].getX();
+            int y = (int)points[i].getY();
+            if(points[i].getTarget() > 0.00) {
+                graph[x][y] = "#";
+            } else if (points[i].getTarget() < 0.00) {
+                graph[x][y] = "$";
+            }
         }
-        return errors;
+
+        //display grid
+        for (int i = 0; i < graph.length; i++) {
+            for (int j = 0; j < graph[i].length; j++) {
+                System.out.print(graph[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+
     }
 
     public void train() {
-        this.errors = findError();
-        updateWeights(errors);
+        for (int i = 0; i < points.length; i++) {
+            double xCoordinate = points[i].getX();
+            double yCoordinate = points[i].getY();
+            double[] preceptronInputs = {xCoordinate, yCoordinate};
+            
+            preceptron.setInputs(preceptronInputs);
+            preceptron.pulse();
+            
+            double guess = preceptron.getOutput();
+            
+        }
         
     }
 
-    public void updateWeights(double[] errors) {     
-        double[] weights = preceptron.getWeights();
-
-        for (int i = 0; i < errors.length; i++) {
-            
-            for (int j = 0; j < weights.length; j++) {
-                weights[j] += errors[i] * inputs[i][j] * preceptron.getLearningRate();
-            }
-            if (i == errors.length - 1) {
-                System.out.print("Updated Weights: ");
-                System.out.println(weights[0] + ", " + weights[1]);
-            }
-        }
-    }
-
+    
     
     
     

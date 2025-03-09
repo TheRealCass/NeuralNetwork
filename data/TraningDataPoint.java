@@ -5,11 +5,17 @@ import supervisedLearning.ActivationMap;
 public class TraningDataPoint extends DataPoint{
 
     double target;
+    double error;
 
     public TraningDataPoint(ActivationMap map) {
         //choose a random x,y coordinate value from the map-grid
         super((int)(Math.random() * map.getLengthOfXAxis()), (int)(Math.random() * map.getLengthOfYAxis()));
         this.target = map.calculateLabel(this);
+    }
+
+    public void calculateError(){
+        throw new UnsupportedOperationException("Unimplemented method 'calculateError'");
+        
     }
 
     public double getTarget() {
@@ -24,6 +30,14 @@ public class TraningDataPoint extends DataPoint{
         String toReturn = super.toString();
         toReturn += " : " + target;
         return toReturn;
+    }
+
+    public void setError(double error) {
+        this.error = error;
+    }
+
+    public double getError() {
+        return error;
     }
 
     

@@ -9,13 +9,12 @@ public class Preceptron {
     //input 3--->---(weight3)-----|
     //
 
-    //constants
-    protected static final String PREFERED_ACTIVATION_FUNC = "sigh";
     
     // Instance variables
     protected int NumOfInputs;
     protected double[] inputs;
     protected double[] weights;
+    protected boolean hasOutput;
     protected double output;
     protected double weightedSum;
     protected double learningRate = 0.01;
@@ -29,7 +28,8 @@ public class Preceptron {
     public Preceptron(int NumOfInputs) {
         
         weightedSum = 0;
-        output = 0;
+        output = -99.99;
+        hasOutput = false;
         
         // Initialize the inputs & weights randomly
         this.NumOfInputs = NumOfInputs;
@@ -64,7 +64,8 @@ public class Preceptron {
         this.weightedSum = sum;
 
         // pass through a activation function
-        this.output = ActivationFunctions.activate(weightedSum, PREFERED_ACTIVATION_FUNC);
+        this.output = ActivationFunctions.rubait(weightedSum);
+        hasOutput = true;
     }
 
 
@@ -81,6 +82,7 @@ public class Preceptron {
     public void setInputs(double[] inputs) {
         this.inputs = inputs;
         this.NumOfInputs = inputs.length;
+        hasOutput = false;
     }
 
     public double[] getWeights() {
@@ -112,5 +114,19 @@ public class Preceptron {
 
     public int getNumOfInputs() {
         return NumOfInputs;
+    }
+
+    @Override
+    public String toString() {
+        String toReturn = "Inputs:\n";
+        for (int i = 0; i < inputs.length; i++) {
+            toReturn += i + ". ";
+            toReturn += inputs[i] + ", " + weights[i] + "\n";
+        }
+        if (hasOutput) {
+            toReturn += "Output:\n";
+            toReturn += output;
+        }
+        return toReturn;
     }
 }

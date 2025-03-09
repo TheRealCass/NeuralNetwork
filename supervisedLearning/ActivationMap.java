@@ -62,30 +62,24 @@ public final class ActivationMap {
         for (int i = 0; i < map.length; i++) {
             for(int j = 0; j< map[i].length; j++) {
                 int temp = (int)map[i][j];
-                toReturn += temp + " ";
+                if(temp >= 0.00) {
+                    toReturn += "#";
+                } else if (temp < 0.00) {
+                    toReturn += "$";
+                }
+                toReturn += " ";
             }
             toReturn += "\n";
         }
         return toReturn;
     }
 
-    /**
-     * calcuate the label for the point based on the activation map
-     * @param xValue y * (-1)
-     * @param yValue x value
-     * @return
-     */
-    public double calculateLabel(int xValue, int yValue){
-        double label = map[xValue][yValue];
-        return label;
-
-    }
-
+    
     public double calculateLabel(TraningDataPoint point){
         int x = (int)point.getX();
         int y = (int)point.getY();
         
-        double label = calculateLabel(x, y);
+        double label = map[x][y];
         return label;
 
     }
@@ -97,4 +91,6 @@ public final class ActivationMap {
     public int getLengthOfYAxis() {
         return lengthOfYAxis;
     }
+
+    
 }

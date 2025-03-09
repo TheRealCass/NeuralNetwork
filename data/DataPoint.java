@@ -18,10 +18,14 @@ public class DataPoint {
         return y;
     }
 
-    private double randInt(int min, int max) {
-        int toReturn =  (int)(Math.random() * (max - min + 1) + min);
-        return toReturn;
+    public void setX(double x) {
+        this.x = x;
     }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
 
     @Override
     public String toString() {

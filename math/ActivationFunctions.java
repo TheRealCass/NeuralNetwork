@@ -1,33 +1,13 @@
 package math;
 
-public abstract class ActivationFunctions {
-    
-    public static double activate(double input, String activationFunction) {
-        switch (activationFunction) {
-            case "sigmoid":
-                return sigmoid(input);
-            case "tanh":
-                return tanh(input);
-            case "relu":
-                return relu(input);
-            case "leaky_relu":
-                return leakyRelu(input);
-            case "elu":
-                return elu(input);
-            case "sin":
-                return sin(input);
-            default:
-                return rubait(input);
-        }
-    }
-    
+public abstract class ActivationFunctions {    
 
     /**
      * sin activation function
      * @param input
      * @return value between -1 and 1
      */
-    private static double sin(double input) {
+    public static double sin(double input) {
         return Math.sin(input);
     }
 
@@ -38,7 +18,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value of -1 or 1
      */
-    private static double rubait(double input) {
+    public static double rubait(double input) {
         double toReturn = -1.00;
         if (input >= 0) {
             toReturn = 1.00;
@@ -54,7 +34,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and 1
      */
-    private static double sigmoid(double input) {
+    public static double sigmoid(double input) {
         return 1 / (1 + Math.exp(-input));
     }
 
@@ -63,7 +43,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and 1
      */
-    private static double sigmoidDerivative(double input) {
+    public static double sigmoidDerivative(double input) {
         return input * (1 - input);
     }
 
@@ -72,7 +52,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between -1 and 1
      */
-    private static double tanh(double input) {
+    public static double tanh(double input) {
         return Math.tanh(input);
     }
 
@@ -81,7 +61,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between -1 and 1
      */
-    private static double tanhDerivative(double input) {
+    public static double tanhDerivative(double input) {
         return 1 - (input * input);
     }
 
@@ -90,7 +70,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and input
      */
-    private static double relu(double input) {
+    public static double relu(double input) {
         return Math.max(0, input);
     }
 
@@ -99,7 +79,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and 1
      */
-    private static double reluDerivative(double input) {
+    public static double reluDerivative(double input) {
         return input > 0 ? 1 : 0;
     }
 
@@ -108,7 +88,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and input
      */
-    private static double leakyRelu(double input) {
+    public static double leakyRelu(double input) {
         return Math.max(0.01 * input, input);
     }
 
@@ -117,7 +97,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and 1
      */
-    private static double leakyReluDerivative(double input) {
+    public static double leakyReluDerivative(double input) {
         return input > 0 ? 1 : 0.01;
     }
 
@@ -126,7 +106,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and input
      */
-    private static double elu(double input) {
+    public static double elu(double input) {
         return input > 0 ? input : 0.01 * (Math.exp(input) - 1);
     }
 
@@ -135,7 +115,7 @@ public abstract class ActivationFunctions {
      * @param input
      * @return value between 0 and 1
      */
-    private static double eluDerivative(double input) {
+    public static double eluDerivative(double input) {
         return input > 0 ? 1 : elu(input) + 0.01;
     }
 }
