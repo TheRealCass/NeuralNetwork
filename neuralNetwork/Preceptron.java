@@ -25,17 +25,18 @@ public class Preceptron {
      * @param NumOfInputs Number of inputs to the preceptron
      * @return Preceptron object
      */
-    public Preceptron(int NumOfInputs) {
+    public Preceptron() {
         
-        weightedSum = 0;
-        output = -99.99;
-        hasOutput = false;
+        this.weightedSum = 0;
+        this.output = -99.99;
+        this.hasOutput = false;
+        this.NumOfInputs = 2;
+
         
         // Initialize the inputs & weights randomly
-        this.NumOfInputs = NumOfInputs;
-        inputs = new double[this.NumOfInputs];
-        weights = new double[this.NumOfInputs];
-        for (int i = 0; i < this.NumOfInputs ; i++) {
+        inputs = new double[NumOfInputs];
+        weights = new double[NumOfInputs];
+        for (int i = 0; i < NumOfInputs ; i++) {
             inputs[i] = Math.random() * 2 - 1;
             if (inputs[i] > 0.99) {
                 inputs[i] = 1.00;
