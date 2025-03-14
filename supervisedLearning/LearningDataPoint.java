@@ -5,6 +5,7 @@ public class LearningDataPoint {
     private double[] inputs;
     private int totalNumberOfInputs;
     private double expectedOutput;
+    private double error;
 
     /**
      * constructor

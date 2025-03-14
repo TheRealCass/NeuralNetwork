@@ -17,7 +17,7 @@ public class Preceptron {
     protected boolean hasOutput;
     protected double output;
     protected double weightedSum;
-    protected double learningRate = 0.01;
+    protected double learningRate = 0.001;
 
     /**
      * Constructor for the Preceptron class
@@ -119,13 +119,10 @@ public class Preceptron {
 
     @Override
     public String toString() {
-        String toReturn = "Inputs:\n";
-        for (int i = 0; i < inputs.length; i++) {
-            toReturn += i + ". ";
-            toReturn += inputs[i] + ", " + weights[i] + "\n";
-        }
+        String toReturn = "";
+        toReturn += inputs[0] +" and " + inputs[1];
         if (hasOutput) {
-            toReturn += "Output:\n";
+            toReturn += " is ";
             toReturn += output;
         }
         return toReturn;
