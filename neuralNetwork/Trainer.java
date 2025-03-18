@@ -17,11 +17,9 @@ public class Trainer {
         double[] inputs = preceptron.getInputs();
         double[] weights = preceptron.getWeights();
         double learningRate = preceptron.getLearningRate();
-        double bias = 1;  // this needs to be changed later
 
         for (int i = 0; i < weights.length; i++) {
             weights[i] += inputs[i] * error * learningRate;
-            weights[i] += bias;
         }
         preceptron.setWeights(weights);
     }
@@ -32,6 +30,7 @@ public class Trainer {
         preceptron.pulse();
         double output = preceptron.getOutput();
         double error = corrDataPoint.getExpectedOutput() - output;
+        corrDataPoint.setError(error);
         return error;
     }
 }

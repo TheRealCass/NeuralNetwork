@@ -96,4 +96,8 @@ public class LearningDataPoint {
     public int getTotalNumberOfInputs() {
         return totalNumberOfInputs;
     }
+    
+    public void setError(double error) {
+        this.error = error;
+    }
 }

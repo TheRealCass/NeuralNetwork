@@ -17,7 +17,8 @@ public class Preceptron {
     protected boolean hasOutput;
     protected double output;
     protected double weightedSum;
-    protected double learningRate = 0.001;
+    protected double learningRate;
+    protected double bias;
 
     /**
      * Constructor for the Preceptron class
@@ -31,6 +32,8 @@ public class Preceptron {
         this.output = -99.99;
         this.hasOutput = false;
         this.NumOfInputs = 2;
+        this.bias = 1.00;
+        this.learningRate = 0.01;
 
         
         // Initialize the inputs & weights randomly
@@ -61,6 +64,7 @@ public class Preceptron {
         double sum = 0;
         for (int i = 0; i < weights.length; i++) {
             sum += inputs[i] * weights[i];
+            sum += bias;
         }
         this.weightedSum = sum;
 

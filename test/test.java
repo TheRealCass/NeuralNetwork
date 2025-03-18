@@ -1,6 +1,5 @@
 package test;
 
-import java.util.function.Predicate;
 
 import neuralNetwork.Preceptron;
 import neuralNetwork.Trainer;
@@ -9,7 +8,7 @@ import supervisedLearning.LearningDataPoint;
 public class test {
     
     public static void main(String[] args) {
-       train(100000);
+       train(10000000);
         
     }
 
@@ -30,25 +29,22 @@ public class test {
 
         }
 
-        System.out.println("Trained over 20 points.\nLets try 1 and 1 and see if we get a 1");
+        System.out.println("Trained over 10000000 points.");
         double[] afterTrainTestInput0 = {1.00, 1.00};
         p.setInputs(afterTrainTestInput0);
         p.pulse();
         System.out.println(p);
 
-        System.out.println("Now Lets try 0 and 1 and see if we get a 0");
         double[] afterTrainTestInput1 = {0.00, 1.00};
         p.setInputs(afterTrainTestInput1);
         p.pulse();
         System.out.println(p);
 
-        System.out.println("Now Lets try 1 and 0 and see if we get a 0");
         double[] afterTrainTestInput2 = {1.00, 0.00};
         p.setInputs(afterTrainTestInput2);
         p.pulse();
         System.out.println(p);
 
-        System.out.println("Now Lets try 0 and 0 and see if we get a 0");
         double[] afterTrainTestInput3 = {0.00, 0.00};
         p.setInputs(afterTrainTestInput3);
         p.pulse();
