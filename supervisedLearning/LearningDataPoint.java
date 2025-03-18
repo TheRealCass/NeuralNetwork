@@ -16,6 +16,7 @@ public class LearningDataPoint {
 
         expectedOutput = 0;
         totalNumberOfInputs = 2;
+        error = -99.99;
         inputs = new double[totalNumberOfInputs];
         fillInputs();
         calculateTarget();

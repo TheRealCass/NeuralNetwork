@@ -32,7 +32,7 @@ public class Preceptron {
         this.output = -99.99;
         this.hasOutput = false;
         this.NumOfInputs = 2;
-        this.bias = 1.00;
+        this.bias = -1.00;
         this.learningRate = 0.01;
 
         
