@@ -2,14 +2,14 @@ package test;
 
 
 import neuralNetwork.Preceptron;
-import neuralNetwork.Trainer;
 import supervisedLearning.LearningDataPoint;
+import supervisedLearning.Trainer;
 
 public class test {
     
     public static void main(String[] args) {
-        //int itterations = 10000000;
-        int itterations = 1000;
+        int itterations = 10000000;
+        //int itterations = 1000;
         Preceptron preceptron = train(itterations);
         printOutro(itterations, preceptron);
         

@@ -32,6 +32,8 @@ public class LearningDataPoint {
 
         if ((a > 0.00) && (b > 0.00)) {
             expectedOutput = 1.00; // a(t) and b(t) = true
+        // } else if ((a < 1.00) && (b > 0.00)) {
+        //     expectedOutput = 1.00; // a(f) and b(t) = true
         } else {
             expectedOutput = 0.00;
         }

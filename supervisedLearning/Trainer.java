@@ -1,6 +1,6 @@
-package neuralNetwork;
+package supervisedLearning;
 
-import supervisedLearning.LearningDataPoint;
+import neuralNetwork.Preceptron;
 
 public class Trainer {
     
